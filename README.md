@@ -18,4 +18,4 @@ $ ./script.sh stop
 ```
 
 ## Note
-The http server uses signals to allow for graceful shutdown. Use this as a standard pattern when creating all web services. 
+The http server by @luigizuccarelli uses signals to allow for graceful shutdown. Use this as a standard pattern when creating all web services. 
