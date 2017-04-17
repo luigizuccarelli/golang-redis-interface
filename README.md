@@ -15,5 +15,7 @@ $ ./script.sh start
 $ ./script.sh stop
 ```
 
+Replace the `EXEC` variable in `script.sh` with the name of your executable, if it's different.
+
 ## Note
 The http server uses signals to allow for graceful shutdown. Use this as a standard pattern when creating all web services. 
