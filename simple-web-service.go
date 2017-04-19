@@ -12,7 +12,7 @@ var (
 )
 
 func startHttpServer(port string) *http.Server {
-	logger.Level = TRACE
+	logger.Level = "trace"
 	srv := &http.Server{Addr: ":" + port}
 
 	http.HandleFunc("/", SimpleHandler)

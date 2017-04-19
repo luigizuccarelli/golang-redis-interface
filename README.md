@@ -5,7 +5,7 @@ Uses a generic script `script.sh` to simulate start & stop for Linux & MacOS bas
 
 ## Usage 
 
-```
+```bash
 # cd to project directory and build executable
 $ go build .
 $ chmod u+x script.sh
