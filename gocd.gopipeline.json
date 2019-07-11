@@ -1,5 +1,5 @@
 {
-  "group": "microservices",
+  "group": "devops",
   "pipeline": {
     "name": "simple-golang-microservice-pipleine",
     "label_template": "1.0-${COUNT}",
@@ -8,14 +8,12 @@
     "materials": [
       {
         "type": "git",
-        "attributes": {
-          "url": "https://gitea-ci-cd.apps.balt1.okd.14west.io/lzuccarelli/golang-simple-microservice.git",
-          "branch": "master",
-          "destination": "/godata",
-          "name": "gitMaterial",
-          "auto_update": false,
-          "filter": null
-        }
+         "url": "https://gitea-ci-cd.apps.balt1.okd.14west.io/lzuccarelli/golang-simple-microservice.git",
+         "branch": "master",
+         "destination": "/godata",
+         "name": "gitMaterial",
+         "auto_update": false,
+         "filter": null
       }
     ],
     "stages": [
@@ -35,12 +33,10 @@
             "tasks": [
               {
                 "type": "exec",
-                "attributes": {
-                  "command": "ls",
-                  "arguments": [
-                    "-la"
-                  ]
-                }
+                "command": "ls",
+                "arguments": [
+                  "-la"
+                ]
               }
             ]
           }
