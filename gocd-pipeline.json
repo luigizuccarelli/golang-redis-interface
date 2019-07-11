@@ -1,5 +1,5 @@
 {
-  "group": "test-pipeline",
+  "group": "microservices",
   "pipeline": {
     "name": "simple-golang-microservice-pipleine",
     "label_template": "1.0-${COUNT}",
@@ -11,7 +11,7 @@
         "attributes": {
           "url": "https://gitea-ci-cd.apps.balt1.okd.14west.io/lzuccarelli/golang-simple-microservice.git",
           "branch": "master",
-          "destination": "work",
+          "destination": "/godata",
           "name": "gitMaterial",
           "auto_update": false,
           "filter": null
