@@ -1,0 +1,51 @@
+{
+  "group": "test-pipeline",
+  "pipeline": {
+    "name": "simple-golang-microservice-pipleine",
+    "label_template": "1.0-${COUNT}",
+    "enable_pipeline_locking": true,
+    "template": null,
+    "materials": [
+      {
+        "type": "git",
+        "attributes": {
+          "url": "https://gitea-ci-cd.apps.balt1.okd.14west.io/lzuccarelli/golang-simple-microservice.git",
+          "branch": "master",
+          "destination": "work",
+          "name": "gitMaterial",
+          "auto_update": false,
+          "filter": null
+        }
+      }
+    ],
+    "stages": [
+      {
+        "name": "scm",
+        "fetch_materials": true,
+        "never_cleanup_artifacts": false,
+        "clean_working_directory": false,
+        "approval": null,
+        "environment_variables": [],
+        "jobs": [
+          {
+            "name": "scm_exec",
+            "run_instance_count": null,
+            "environment_variables": [],
+            "timeout": 180,
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "command": "ls",
+                  "arguments": [
+                    "-la"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
