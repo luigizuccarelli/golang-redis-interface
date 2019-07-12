@@ -44,7 +44,42 @@
               },
               "command": "echo",
               "arguments": [
-                "Hello Luigi"
+                "checkout latest from master"
+              ],
+              "working_directory": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "compile",
+      "fetch_materials": true,
+      "clean_working_directory": false,
+      "never_cleanup_artifacts": false,
+      "approval": null,
+      "environment_variables": [],
+      "jobs": [
+        {
+          "name": "compile_exec",
+          "run_instance_count": null,
+          "timeout": 0,
+          "environment_variables": [],
+          "resources": null, 
+          "tasks": [
+            {
+              "type": "exec",
+              "command": "echo",
+              "arguments": [
+                "Executing golang compile"
+              ],
+              "working_directory": null
+            },
+            {
+              "type": "exec",
+              "command": "go",
+              "arguments": [
+                "build -o bin/microservice"
               ],
               "working_directory": null
             }
