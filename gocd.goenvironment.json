@@ -1,5 +1,5 @@
 {
-  "name": "dev",
+  "name": "tfs-be",
   "environment_variables": [
     {
       "name": "OC_USER",
