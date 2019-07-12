@@ -37,7 +37,6 @@
           "tasks": [
             {
               "type": "exec",
-              "run_if": "passed",
               "on_cancel": {
                 "type": "exec",
                 "command": "ls",
