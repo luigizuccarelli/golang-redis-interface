@@ -11,7 +11,7 @@
     {
       "type": "git",
       "url": "https://gitea-ci-cd.apps.balt1.okd.14west.io/lzuccarelli/golang-simple-microservice.git",
-      "destination": "simplemicroservice",
+      "destination": null,
       "filter": null,
       "name": "scm",
       "auto_update": true,
