@@ -1,47 +1,57 @@
 {
-  "group": "devops",
-  "pipeline": {
-    "name": "simple-golang-microservice-pipleine",
-    "label_template": "1.0-${COUNT}",
-    "enable_pipeline_locking": true,
-    "template": null,
-    "materials": [
-      {
-        "type": "git",
-         "url": "https://gitea-ci-cd.apps.balt1.okd.14west.io/lzuccarelli/golang-simple-microservice.git",
-         "branch": "master",
-         "destination": "/godata",
-         "name": "gitMaterial",
-         "auto_update": false,
-         "filter": null
-      }
-    ],
-    "stages": [
-      {
-        "name": "scm",
-        "fetch_materials": true,
-        "never_cleanup_artifacts": false,
-        "clean_working_directory": false,
-        "approval": null,
-        "environment_variables": [],
-        "jobs": [
-          {
-            "name": "scm_exec",
-            "run_instance_count": null,
-            "environment_variables": [],
-            "timeout": 180,
-            "tasks": [
-              {
+  "format_version" : 1,
+  "label_template": "${COUNT}",
+  "enable_pipeline_locking": false,
+  "name": "simple-microservice",
+  "group" : "devops",
+  "tracking_tool": null,
+  "timer": null,
+  "environment_variables": [],
+  "materials": [
+    {
+      "type": "git",
+      "url": "https://gitea-ci-cd.apps.balt1.okd.14west.io/lzuccarelli/golang-simple-microservice.git",
+      "destination": "simplemicroservice",
+      "filter": null,
+      "name": "scm",
+      "auto_update": true,
+      "branch": "master",
+      "submodule_folder": null
+    }
+  ],
+  "stages": [
+    {
+      "name": "checkout_scm",
+      "fetch_materials": true,
+      "clean_working_directory": false,
+      "never_cleanup_artifacts": false,
+      "approval": null,
+      "environment_variables": [],
+      "jobs": [
+        {
+          "name": "scm_exec",
+          "run_instance_count": null,
+          "timeout": 0,
+          "environment_variables": [],
+          "resources": null, 
+          "tasks": [
+            {
+              "type": "exec",
+              "run_if": "passed",
+              "on_cancel": {
                 "type": "exec",
                 "command": "ls",
-                "arguments": [
-                  "-la"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+                "working_directory": null
+              },
+              "command": "echo",
+              "arguments": [
+                "Hello Luigi"
+              ],
+              "working_directory": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
