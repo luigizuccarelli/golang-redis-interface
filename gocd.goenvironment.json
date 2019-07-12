@@ -1,0 +1,15 @@
+{
+  "name": "dev",
+  "environment_variables": [
+    {
+      "name": "OC_USER",
+      "value": "lzuccarelli"
+    }
+  ],
+  "agents": [
+    "gocdagent-2-vfw6h"
+  ],
+  "pipelines": [
+    "simple-microservice"
+  ]
+}
