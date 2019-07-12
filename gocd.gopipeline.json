@@ -54,7 +54,7 @@
     },
     {
       "name": "compile",
-      "fetch_materials": true,
+      "fetch_materials": false,
       "clean_working_directory": false,
       "never_cleanup_artifacts": false,
       "approval": null,
