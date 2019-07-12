@@ -79,7 +79,9 @@
               "type": "exec",
               "command": "go",
               "arguments": [
-                "build -o bin/microservice"
+                "build",
+                "-o",
+                "bin/microservice"
               ],
               "working_directory": null
             }
