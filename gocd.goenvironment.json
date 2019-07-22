@@ -4,6 +4,10 @@
     {
       "name": "OC_USER",
       "value": "lzuccarelli"
+    },
+    {
+      "name": "OC_NAME",
+      "value": ""
     }
   ],
   "agents": [
