@@ -88,6 +88,53 @@
           ]
         }
       ]
+    },
+    {
+      "name": "build",
+      "fetch_materials": false,
+      "clean_working_directory": false,
+      "never_cleanup_artifacts": false,
+      "approval": null,
+      "environment_variables": [],
+      "jobs": [
+        {
+          "name": "build_exec",
+          "run_instance_count": null,
+          "timeout": 0,
+          "environment_variables": [],
+          "resources": null, 
+          "tasks": [
+            {
+              "type": "exec",
+              "command": "echo",
+              "arguments": [
+                "Building UBI golang image"
+              ],
+              "working_directory": null
+            },
+            {
+              "type": "exec",
+              "command": "oc",
+              "arguments": [
+                "login",
+                "https://master.balt1.okd.14west.io:8443",
+                "--token=EI_L1xrzGnOdsJwoCfJ3PrkDNc9OLxliYE4hGuTKG10"
+              ],
+              "working_directory": null
+            },
+            {
+              "type": "exec",
+              "command": "oc",
+              "arguments": [
+                "run",
+                "kaniko",
+                "--env='DESTINATION=lzuccarelli/golang-simple-service:1.25.5'"
+              ],
+              "working_directory": null
+            }
+          ]
+        }
+      ]
     }
   ]
 }
