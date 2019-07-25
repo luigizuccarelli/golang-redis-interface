@@ -15,7 +15,7 @@
       "filter": null,
       "name": "scm",
       "auto_update": true,
-      "branch": "development",
+      "branch": "master",
       "submodule_folder": null
     }
   ],
