@@ -118,7 +118,10 @@
               "arguments": [
                 "login",
                 "https://master.balt1.okd.14west.io:8443",
-                "--token=EI_L1xrzGnOdsJwoCfJ3PrkDNc9OLxliYE4hGuTKG10"
+                "-n",
+                "ci-cd",
+                "--token=EI_L1xrzGnOdsJwoCfJ3PrkDNc9OLxliYE4hGuTKG10",
+                "--insecure-skip-tls-verify"
               ],
               "working_directory": null
             },
