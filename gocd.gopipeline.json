@@ -131,6 +131,7 @@
               "arguments": [
                 "run",
                 "kaniko",
+                "--image=gcr.io/kaniko-project/executor:latest",
                 "--env='DESTINATION=lzuccarelli/golang-simple-service:1.25.5'"
               ],
               "working_directory": null
