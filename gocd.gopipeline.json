@@ -118,7 +118,7 @@
               "arguments": [
                 "false",
                 "${MASTER_URL}",
-                "${OC_TOKEN}"
+                "${OC_TOKEN}",
                 "",
                 ""
               ],
