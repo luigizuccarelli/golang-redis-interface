@@ -58,7 +58,7 @@ echo "GOCD pipeline label   ${GO_PIPELINE_LABEL}"
 echo -e " " 
 
 # first login
-oc login ${2} -n ci-cd --token=${3} --insecure-skip-tls-verify
+oc login ${MASTER_URL} -n ci-cd --token=${OC_TOKEN} --insecure-skip-tls-verify
 
 
 # we can now execute the job
@@ -80,7 +80,7 @@ then
 else
   echo "Passed"
   # if we aren't deploying then just exit
-  if [ "${1}" == "false" ];
+  if [ "${AUTODEPLOY}" == "false" ];
   then
     oc delete job/"${name}"
     exit 0
@@ -90,11 +90,11 @@ fi
 # delete the job
 oc delete job/"${name}" 
 
-if [ "${3}" == "true" ];
+if [ "${AUTODEPLOY}" == "true" ];
 then
   # we assume that the project resides on the same server (master-url)
   # if not then add a new login call here first
-  oc project ${4}
-  oc rollout ${5}
+  oc project ${OC_NAMESPACE}
+  oc rollout ${OC_DEPLOYMENTCONFIG}
   exit 0
 fi
