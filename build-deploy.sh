@@ -28,8 +28,6 @@ echo "GOCD job name         ${GO_JOB_NAME}"
 echo "GOCD pipeline name    ${GO_PIPELINE_NAME}"
 echo "GOCD pipeline counter ${GO_PIPELINE_COUNTER}"
 echo "GOCD pipeline label   ${GO_PIPELINE_LABEL}"
-echo "GOCD to revision      ${GO_TO_REVISION}"
-echo "GOCD from revision    ${GO_FROM_REVISION}"
 
 
 # first login
