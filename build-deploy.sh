@@ -15,20 +15,47 @@
 # declare some variables
 name="kaniko-simple-microservice"
 
-if [ "$#" -lt 3 ]
+# some variable checks
+if [ -z ${MASTER_URL} ]; 
 then
-  echo " "
-  echo -e "\033[0;93musage  build-deploy.sh <autodeploy> <master-url> <user-token> <namespace> <deploymentconfig>\033[0m"
-  echo " "
+  echo -e "\033[0;91mMASTER_URL envar is not set please set it in the environments tab in GOCD\033[0m"
   exit -1
 fi
 
+if [ -z ${AUTODEPLOY} ]; 
+then
+  echo -e "\033[0;913mAUTODEPLOY envar is not set please set it in the environments tab in GOCD\033[0m"
+  exit -1
+fi
+
+if [ -z ${OC_TOKEN} ]; 
+then
+  echo -e "\033[0;91mOC_TOKEN envar is not set please set it in the environments tab (secure envar) in GOCD\033[0m"
+  exit -1
+fi
+
+if [ "${AUTODEPLOY}" == "true" ];
+then
+  if [ -z ${OC_NAMESPACE} ]; 
+  then
+    echo -e "\033[0;91mOC_NAMESPACE envar is not set please set it in the environments tab in GOCD\033[0m"
+    exit -1
+  fi
+  if [ -z ${OC_DEPLOYMENTCONFIG} ]; 
+  then
+    echo -e "\033[0;91mOC_DEPLOYMENTCONFIG envar is not set please set it in the environments tab in GOCD\033[0m"
+    exit -1
+  fi
+fi
+
+
 # list some gocd variables
+echo -e " "
 echo "GOCD job name         ${GO_JOB_NAME}"
 echo "GOCD pipeline name    ${GO_PIPELINE_NAME}"
 echo "GOCD pipeline counter ${GO_PIPELINE_COUNTER}"
 echo "GOCD pipeline label   ${GO_PIPELINE_LABEL}"
-
+echo -e " " 
 
 # first login
 oc login ${2} -n ci-cd --token=${3} --insecure-skip-tls-verify

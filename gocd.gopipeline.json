@@ -115,13 +115,6 @@
             {
               "type": "exec",
               "command": "./build-deploy.sh",
-              "arguments": [
-                "false",
-                "$MASTER_URL",
-                "$OC_TOKEN",
-                "",
-                ""
-              ],
               "working_directory": null
             }
           ]
