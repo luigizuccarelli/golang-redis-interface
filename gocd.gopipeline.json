@@ -108,31 +108,19 @@
               "type": "exec",
               "command": "echo",
               "arguments": [
-                "Building UBI golang image"
+                "Building UBI golang image and push to registry (optional deploy)"
               ],
               "working_directory": null
             },
             {
               "type": "exec",
-              "command": "oc",
+              "command": "./build-deploy.sh",
               "arguments": [
-                "login",
-                "https://master.balt1.okd.14west.io:8443",
-                "-n",
-                "ci-cd",
-                "--token=EI_L1xrzGnOdsJwoCfJ3PrkDNc9OLxliYE4hGuTKG10",
-                "--insecure-skip-tls-verify"
-              ],
-              "working_directory": null
-            },
-            {
-              "type": "exec",
-              "command": "oc",
-              "arguments": [
-                "run",
-                "kaniko",
-                "--image=gcr.io/kaniko-project/executor:latest",
-                "--env='DESTINATION=lzuccarelli/golang-simple-service:1.25.5'"
+                "false",
+                "${MASTER_URL}",
+                "${OC_TOKEN}"
+                "",
+                ""
               ],
               "working_directory": null
             }

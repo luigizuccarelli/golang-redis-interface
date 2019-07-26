@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kaniko-simple-microservice
+spec:
+  parallelism: 1    
+  completions: 1    
+  template:         
+    metadata:
+      name: kaniko-simple-microservice
+    spec:
+      containers:
+      - name: kaniko
+        image: gcr.io/kaniko-project/executor:latest
+        args: [
+          "--dockerfile=/godata/pipelines/simple-microservice/Dockerfile",
+          "--context=/godata/pipelines/simple-microservice",
+          "--destination=lzuccarelli/golang-simple-service:1.12.5"
+        ]
+        volumeMounts:
+        - mountPath: /godata
+          name: gocdagent-data
+        - mountPath: /kaniko/.docker/config.json
+          name: docker-creds
+          subPath: config.json
+        env:
+        - name: DESITINATION
+          value: lzuccarelli/golang-simple-service:1.12.5
+      restartPolicy: Never   
+      volumes:
+      - name: gocdagent-data
+        persistentVolumeClaim:
+          claimName: gocdagent
+      - name: docker-creds
+        configMap:
+          defaultMode: 420
+          name: configcontent
+      backoffLimit: 1
