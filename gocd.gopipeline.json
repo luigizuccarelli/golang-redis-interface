@@ -117,7 +117,7 @@
               "command": "sh",
               "arguments": [
                 "-c",
-                "./build-deploy.sh"
+                "./build-deploy.sh",
                 "false",
                 "$MASTER_URL",
                 "$OC_TOKEN",
