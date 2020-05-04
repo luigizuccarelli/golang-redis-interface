@@ -1,0 +1,33 @@
+{
+   "anonymousId": "4f3c8cf7-d35f-4877-bf5f-255a036b7440",
+   "channel": "client",
+   "context": {
+      "ip": "89.100.153.114",
+      "library": {
+         "name": "analytics.js",
+         "version": "3.11.0"
+      },
+      "locale": "en-US",
+      "page": {
+         "path": "/index.html",
+         "referrer": "https://127.0.0.1:8088/index.html",
+         "search": "",
+         "title": "How to REVERSE Alzheimer\"s Disease in 37 Days",
+         "url": "https://127.0.0.1:8088/index.html"
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36",
+      "visual_tagger": true
+   },
+   "event": "RadioBtn2",
+   "integrations": {},
+   "messageId": "ajs-ec403622fd106adde8b45dd9870254cb",
+   "originalTimestamp": "2020-02-06T16:57:52.085Z",
+   "projectId": "AxOxqf4DUA",
+   "properties": {},
+   "receivedAt": "2020-02-06T16:57:52.210Z",
+   "sentAt": "2020-02-06T16:57:52.089Z",
+   "timestamp": "2020-02-06T16:57:52.206Z",
+   "type": "track",
+   "userId": "97980cfea0067",
+   "version": 2
+}
