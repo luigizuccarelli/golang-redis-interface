@@ -139,14 +139,14 @@ func TestHandlers(t *testing.T) {
 		}
 	})
 
-	t.Run("LineDataHandler : GET should pass", func(t *testing.T) {
+	t.Run("GraphDataHandler : GET should pass", func(t *testing.T) {
 		var STATUS int = 200
 		// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
 		rr := httptest.NewRecorder()
-		req, _ := http.NewRequest("GET", "/api/v1/linedata", nil)
+		req, _ := http.NewRequest("GET", "/api/v1/data", nil)
 		conn := NewTestConnections("../../tests/payload.json", STATUS, logger)
 		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			LineDataHandler(w, r, logger, conn)
+			GraphDataHandler(w, r, logger, conn)
 		})
 		handler.ServeHTTP(rr, req)
 
@@ -161,14 +161,14 @@ func TestHandlers(t *testing.T) {
 		}
 	})
 
-	t.Run("LineDataHandler : POST should fail", func(t *testing.T) {
+	t.Run("GraphDataHandler : POST should fail", func(t *testing.T) {
 		var STATUS int = 500
 		// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
 		rr := httptest.NewRecorder()
 		req, _ := http.NewRequest("POST", "/api/v1/linedata", errReader(0))
 		conn := NewTestConnections("../../tests/payload.json", STATUS, logger)
 		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			LineDataHandler(w, r, logger, conn)
+			GraphDataHandler(w, r, logger, conn)
 		})
 		handler.ServeHTTP(rr, req)
 
@@ -183,80 +183,14 @@ func TestHandlers(t *testing.T) {
 		}
 	})
 
-	t.Run("LineDataHandler : POST should pass", func(t *testing.T) {
+	t.Run("GraphDataHandler : POST should pass", func(t *testing.T) {
 		var STATUS int = 200
 		// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
 		rr := httptest.NewRecorder()
-		req, _ := http.NewRequest("POST", "/api/v1/linedata?id=10", bytes.NewBuffer([]byte("{[20,30,40]}")))
+		req, _ := http.NewRequest("POST", "/api/v1/data?id=10&graph=bar", bytes.NewBuffer([]byte("{[20,30,40]}")))
 		conn := NewTestConnections("../../tests/payload.json", STATUS, logger)
 		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			LineDataHandler(w, r, logger, conn)
-		})
-		handler.ServeHTTP(rr, req)
-
-		body, e := ioutil.ReadAll(rr.Body)
-		if e != nil {
-			t.Fatalf("Should not fail : found error %v", e)
-		}
-		logger.Trace(fmt.Sprintf("Response %s", string(body)))
-		// ignore errors here
-		if rr.Code != STATUS {
-			t.Errorf(fmt.Sprintf("Handler %s returned with incorrect status code - got (%d) wanted (%d)", "IsAlive", rr.Code, STATUS))
-		}
-	})
-
-	t.Run("BarDataHandler : GET should pass", func(t *testing.T) {
-		var STATUS int = 200
-		// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
-		rr := httptest.NewRecorder()
-		req, _ := http.NewRequest("GET", "/api/v1/bardata", nil)
-		conn := NewTestConnections("../../tests/payload.json", STATUS, logger)
-		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			BarDataHandler(w, r, logger, conn)
-		})
-		handler.ServeHTTP(rr, req)
-
-		body, e := ioutil.ReadAll(rr.Body)
-		if e != nil {
-			t.Fatalf("Should not fail : found error %v", e)
-		}
-		logger.Trace(fmt.Sprintf("Response %s", string(body)))
-		// ignore errors here
-		if rr.Code != STATUS {
-			t.Errorf(fmt.Sprintf("Handler %s returned with incorrect status code - got (%d) wanted (%d)", "IsAlive", rr.Code, STATUS))
-		}
-	})
-
-	t.Run("BarDataHandler : POST should pass", func(t *testing.T) {
-		var STATUS int = 200
-		// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
-		rr := httptest.NewRecorder()
-		req, _ := http.NewRequest("POST", "/api/v1/bardata", bytes.NewBuffer([]byte("{[20,30,40]}")))
-		conn := NewTestConnections("../../tests/payload.json", STATUS, logger)
-		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			BarDataHandler(w, r, logger, conn)
-		})
-		handler.ServeHTTP(rr, req)
-
-		body, e := ioutil.ReadAll(rr.Body)
-		if e != nil {
-			t.Fatalf("Should not fail : found error %v", e)
-		}
-		logger.Trace(fmt.Sprintf("Response %s", string(body)))
-		// ignore errors here
-		if rr.Code != STATUS {
-			t.Errorf(fmt.Sprintf("Handler %s returned with incorrect status code - got (%d) wanted (%d)", "IsAlive", rr.Code, STATUS))
-		}
-	})
-
-	t.Run("BarDataHandler : POST should fail", func(t *testing.T) {
-		var STATUS int = 500
-		// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
-		rr := httptest.NewRecorder()
-		req, _ := http.NewRequest("POST", "/api/v1/bardata?id=10", errReader(0))
-		conn := NewTestConnections("../../tests/payload.json", STATUS, logger)
-		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			BarDataHandler(w, r, logger, conn)
+			GraphDataHandler(w, r, logger, conn)
 		})
 		handler.ServeHTTP(rr, req)
 

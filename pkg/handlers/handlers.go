@@ -18,26 +18,29 @@ const (
 	APPLICATIONJSON string = "application/json"
 )
 
-func LineDataHandler(w http.ResponseWriter, r *http.Request, logger *simple.Logger, con connectors.Clients) {
+func GraphDataHandler(w http.ResponseWriter, r *http.Request, logger *simple.Logger, con connectors.Clients) {
 	var response *schema.Response
 	var data []byte
 
 	id := r.URL.Query().Get("id")
+	graph := r.URL.Query().Get("graph")
 	addHeaders(w, r)
-
 	if id == "" {
-		id = "default-line"
+		id = "default"
+	}
+	if graph == "" {
+		id = "line"
 	}
 
 	if r.Method == http.MethodGet {
-		data, _ = con.Get(id + "-line")
+		data, _ = con.Get(id + "-i" + graph)
 	} else if r.Method == http.MethodPost {
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
 			response = &schema.Response{Name: os.Getenv("NAME"), StatusCode: "500", Status: "KO", Message: fmt.Sprintf("Could not read body data %v\n", err), Payload: ""}
 			w.WriteHeader(http.StatusInternalServerError)
 		} else {
-			con.Set(id+"-line", body, 0)
+			con.Set(id+"-"+graph, body, 0)
 			data = body
 		}
 	}
@@ -45,36 +48,6 @@ func LineDataHandler(w http.ResponseWriter, r *http.Request, logger *simple.Logg
 	w.WriteHeader(http.StatusOK)
 	b, _ := json.MarshalIndent(response, "", "	")
 	logger.Debug(fmt.Sprintf("LineDataHandler response : %s", string(b)))
-	fmt.Fprintf(w, string(b))
-}
-
-func BarDataHandler(w http.ResponseWriter, r *http.Request, logger *simple.Logger, con connectors.Clients) {
-	var response *schema.Response
-	var data []byte
-
-	id := r.URL.Query().Get("id")
-	addHeaders(w, r)
-
-	if id == "" {
-		id = "default-bar"
-	}
-
-	if r.Method == http.MethodGet {
-		data, _ = con.Get(id + "-bar")
-	} else if r.Method == http.MethodPost {
-		body, err := ioutil.ReadAll(r.Body)
-		if err != nil {
-			response = &schema.Response{Name: os.Getenv("NAME"), StatusCode: "500", Status: "KO", Message: fmt.Sprintf("Could not read body data %v\n", err), Payload: ""}
-			w.WriteHeader(http.StatusInternalServerError)
-		} else {
-			con.Set(id+"-bar", body, 0)
-			data = body
-		}
-	}
-	response = &schema.Response{Name: os.Getenv("NAME"), StatusCode: "200", Status: "OK", Message: "Data processed succesfully", Payload: string(data)}
-	w.WriteHeader(http.StatusOK)
-	b, _ := json.MarshalIndent(response, "", "	")
-	logger.Debug(fmt.Sprintf("BarDataHandler response : %s", string(b)))
 	fmt.Fprintf(w, string(b))
 }
 

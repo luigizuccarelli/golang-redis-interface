@@ -22,12 +22,8 @@ func startHttpServer(logger *simple.Logger, con connectors.Clients) *http.Server
 
 	r := mux.NewRouter()
 
-	r.HandleFunc("/api/v1/linedata", func(w http.ResponseWriter, req *http.Request) {
-		handlers.LineDataHandler(w, req, logger, con)
-	}).Methods("POST", "GET")
-
-	r.HandleFunc("/api/v1/bardata", func(w http.ResponseWriter, req *http.Request) {
-		handlers.LineDataHandler(w, req, logger, con)
+	r.HandleFunc("/api/v1/data", func(w http.ResponseWriter, req *http.Request) {
+		handlers.GraphDataHandler(w, req, logger, con)
 	}).Methods("POST", "GET")
 
 	r.HandleFunc("/api/v1/proxy", func(w http.ResponseWriter, req *http.Request) {
