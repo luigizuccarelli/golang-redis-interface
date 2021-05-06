@@ -1,3 +1,5 @@
+// +build real
+
 package main
 
 import (
